@@ -1,0 +1,47 @@
+.lgtm-stamp {
+  position: absolute;
+  top: 20px;
+  right: 80px;
+  z-index: 0;
+  display: inline-block;
+  font-family: Arial,sans-serif;
+  -webkit-transform: rotate(-5deg);
+  -moz-transform: rotate(-5deg);
+  -ms-transform: rotate(-5deg);
+  -o-transform: rotate(-5deg);
+  transform: rotate(-5deg);
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 5px;
+  border-radius: 5px;
+  zoom: 1;
+  filter: alpha(opacity=30);
+  opacity: 0.2;
+}
+
+.lgtm-approved {
+  color: #2cbe4e;
+  background: #fff;
+  border:solid 4px #2cbe4e;
+  -webkit-text-shadow: 0 0 2px #2cbe4e;
+  text-shadow: 0 0 2px #2cbe4e;
+  box-shadow: 0 0 2px #2cbe4e;
+}
+
+.lgtm-rejected {
+  color: #cb2431;
+  background: #fff;
+  border:solid 4px #cb2431;
+  -webkit-text-shadow: 0 0 2px #cb2431;
+  text-shadow: 0 0 2px #cb2431;
+  box-shadow: 0 0 2px #cb2431;
+}
+
+.lgtm-default {
+  color: #c4c4c4;
+  background: #fff;
+  border:solid 4px c4c4c4;
+  -webkit-text-shadow: 0 0 2px #c4c4c4;
+  text-shadow: 0 0 2px #c4c4c4;
+  box-shadow: 0 0 2px #c4c4c4;
+}

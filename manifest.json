@@ -1,0 +1,20 @@
+{
+  "name": "LGTM = Looks Good to Me",
+  "description": "LGTM prints review statuses as stamp labels on the GitHub pull request overview page.",
+  "icons": {
+    "128": "lgtm-app-icon.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["contentscript.js"],
+      "css": ["contentscript.css"]
+    }
+  ],
+  "version": "0.1.0",
+  "manifest_version": 2
+}

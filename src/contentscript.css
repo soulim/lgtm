@@ -17,11 +17,11 @@
   zoom: 1;
   filter: alpha(opacity=30);
   opacity: 0.2;
+  background: transparent;
 }
 
 .lgtm-approved {
   color: #2cbe4e;
-  background: #fff;
   border:solid 4px #2cbe4e;
   -webkit-text-shadow: 0 0 2px #2cbe4e;
   text-shadow: 0 0 2px #2cbe4e;
@@ -30,7 +30,6 @@
 
 .lgtm-rejected {
   color: #cb2431;
-  background: #fff;
   border:solid 4px #cb2431;
   -webkit-text-shadow: 0 0 2px #cb2431;
   text-shadow: 0 0 2px #cb2431;
@@ -39,7 +38,6 @@
 
 .lgtm-default {
   color: #c4c4c4;
-  background: #fff;
   border:solid 4px c4c4c4;
   -webkit-text-shadow: 0 0 2px #c4c4c4;
   text-shadow: 0 0 2px #c4c4c4;

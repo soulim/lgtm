@@ -6,23 +6,21 @@
     statuses.forEach(function (item) {
       var label = item.getAttribute('aria-label');
 
-      var [reviewer, response] = label.split(' ', 2);
-
       var stamp = document.createElement('div');
 
-      switch (response) {
-        case 'approved':
-          stamp.setAttribute('class', 'lgtm-stamp lgtm-approved');
-          stamp.appendChild(document.createTextNode('approved'));
-          break;
-        case 'requested':
-          stamp.setAttribute('class', 'lgtm-stamp lgtm-rejected');
-          stamp.appendChild(document.createTextNode('rejected'));
-          break;
-        default:
-          stamp.setAttribute('class', 'lgtm-stamp lgtm-default');
-          stamp.appendChild(document.createTextNode('¯\_(ツ)_/¯'));
-      };
+      // Label text be one of these:
+      //
+      //   - approved: "<username> approved these changes"
+      //   - changes requested (aka rejected): "<username> requested changes"
+      //   - review requested: "Awaiting requested review from <username>"
+      //   - commented: "<username> left review comments"
+      if (label.includes('approved')) {
+        stamp.setAttribute('class', 'lgtm-stamp lgtm-approved');
+        stamp.appendChild(document.createTextNode('approved'));
+      } else if (label.includes('requested changes')) {
+        stamp.setAttribute('class', 'lgtm-stamp lgtm-rejected');
+        stamp.appendChild(document.createTextNode('rejected'));
+      }
 
       var header = document.getElementById('partial-discussion-header');
       header.insertBefore(stamp, header.firstChild);
@@ -35,6 +33,14 @@
     if (allowedPath.test(location.pathname)) { addStamps(); };
   }
 
+  // The extension is activated and this script is executed when the page is
+  // reloaded. However GitHub uses PJAX to load and replace just part of
+  // the page, so there is no actual page reload happening.
+  //
+  // Because PJAX is using `History.replaceState` and `History.popState` to
+  // manipulate URL and update the page parts, this scripts acts as a proxy
+  // for `History.replaceState`. It might look a a hack, but it the best
+  // solution I have found so far.
   var addHistoryStateProxy = function () {
     var replaceState = history.replaceState;
 
@@ -44,6 +50,8 @@
     };
   };
 
+  // The extention is running in a sandbox, so the `History.replaceState` proxy
+  // script must be injected on the page.
   var script = document.createElement('script');
   var parent = document.documentElement;
   script.textContent = '('+ addHistoryStateProxy +')();';
@@ -54,9 +62,6 @@
 
     init();
   });
-  // window.addEventListener('popstate', function (event) {
-  //   console.log('popstate');
-  // });
 
   init();
 })();
